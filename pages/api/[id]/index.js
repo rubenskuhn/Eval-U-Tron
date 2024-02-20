@@ -1,5 +1,5 @@
-import dbConnect from "../../../../db/connect";
-import question from "../../../../db/model/question";
+import dbConnect from "../../../../db/connect.js";
+import question from "../../../../db/models/Question.js";
 
 export default async function handler(request, response) {
   const { id } = request.query;
