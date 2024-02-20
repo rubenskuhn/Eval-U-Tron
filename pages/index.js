@@ -11,7 +11,7 @@ export default function Page() {
         <label htmlFor="answer">first answer:</label>
         <input type="text" id="answer" answer="answer" />
         <br />
-        <label htmlFor="answer">first answer:</label>
+        <label htmlFor="answer">second answer:</label>
         <input type="text" id="answer" answer="answer" />
         <br />
         <button type="submit">Submit</button>
