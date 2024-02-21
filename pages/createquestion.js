@@ -1,6 +1,6 @@
 import Link from "next/link.js";
 import { useRouter } from "next/router";
-import Questions from "./questions";
+import { Button } from "@chakra-ui/react";
 import React from "react";
 
 export default function createQuestion() {
@@ -40,6 +40,17 @@ export default function createQuestion() {
   return (
     <>
       <h1>Eval-U-Tron</h1>
+      <Link href="/questions" passHref legacyBehavior>
+        <Button
+          margin="2px"
+          bg="limegreen"
+          mborder="1px"
+          borderColor="black"
+          borderRadius="md"
+        >
+          Back to Questions
+        </Button>
+      </Link>
       <h2 id="add-question">Add Question</h2>
       <form onSubmit={addQuestion}>
         <label htmlFor="test">Name of your Test:</label>

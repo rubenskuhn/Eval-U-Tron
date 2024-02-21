@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/createquestion": "pages/createquestion.js",
   "/questions": "pages/questions.js",
+  "/createquestion": "pages/createquestion.js",
   "/api/questions": "pages/api/questions.js"
 }
