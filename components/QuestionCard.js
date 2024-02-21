@@ -16,7 +16,11 @@
 
 //   return (
 //     <>
-//       <Card maxW="sm">
+//       <Card
+//         direction={{ base: "column", sm: "row" }}
+//         overflow="hidden"
+//         variant="outline"
+//       >
 //         <CardBody>
 //           {/* <Image></Image> */}
 //           <Stack mt="6" spacing="3">

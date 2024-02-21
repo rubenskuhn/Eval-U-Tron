@@ -8,6 +8,24 @@ export default async function handler(request, response) {
     const questions = await Question.find(); // lower case is the const or function, upper case is the model
     return response.status(200).json(questions); // 200 is good to go!
   } else {
-    return response.status(405).json({ message: "Method not allowed" });
+    response.status(405).json({ message: "Method not allowed" });
+  }
+
+  if (request.method === "POST") {
+    try {
+      const newQuestionData = request.body;
+      console.log("imput new Data:", newQuestionData);
+      const newQuestion = new Question(newQuestionData); // takes the form data and connects it to the model "Question" usign the questionData received from the "Form"
+      await newQuestion.save();
+      response.status(201).json({ status: "Question created" });
+    } catch (e) {
+      console.log("No Question Found --->: ", e);
+    }
+  }
+
+  if (request.method === "DELETE") {
+    const deleteEntryQuestion = await Question.findByIdAndDelete(id);
+    await Comment.deleteOne({ _id: { $in: deleteEntryQuestion.data } });
+    response.status(201).json("Entry Deleted");
   }
 }
