@@ -13,8 +13,10 @@ import {
   Stack,
   Flex,
   Box,
+  Button,
 } from "@chakra-ui/react";
 import React from "react";
+import Link from "next/link";
 import ButtonEditQuestion from "../components/ButtonEditQuestion";
 // import Image from "../public/favicon.ico";
 
@@ -28,13 +30,24 @@ export default function Questions() {
 
   return (
     <>
+      <Box>
+        <h1 size="md">Math Test</h1>
+      </Box>
+      <Link href="/createquestion" passHref legacyBehavior>
+        <Button
+          margin="2px"
+          bg="limegreen"
+          mborder="1px"
+          borderColor="black"
+          borderRadius="md"
+        >
+          Add Question
+        </Button>
+      </Link>
       <SimpleGrid
         spacing={4}
         templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       >
-        <Box>
-          <h1 size="md">Math Test</h1>
-        </Box>
         <Box>
           {data.map(({ proposition, answers, correctAnswer, _id }) => (
             <Card
