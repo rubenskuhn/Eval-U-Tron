@@ -8,12 +8,9 @@ export default function createQuestion() {
 
   async function addQuestion(e) {
     e.preventDefault();
-
-    console.log("==== Question is working: ");
     // Before sending the data of a Form, we first need to access the data of the form. Hence the next two lines are essential
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    console.log("=== Data from Form: ", data);
 
     const fixedDataToSend = {
       proposition: data.proposition,
@@ -22,7 +19,6 @@ export default function createQuestion() {
       answers: [data.firstAnswer, data.secondAnswer, data.thirdAnswer],
       correctAnswer: data.correctAnswer,
     };
-    console.log("===== fixed Data to send: ", fixedDataToSend);
 
     const response = await fetch("/api/questions", {
       method: "POST",

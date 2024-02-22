@@ -22,6 +22,17 @@ export default async function handler(request, response) {
       console.log("No Question Found --->: ", e);
     }
   }
+  if (request.method === "PUT") {
+    try {
+      const editQuestionData = request.body;
+      console.log("==== Edit Data:", editQuestionData);
+      // const editQuestion = new Question(editQuestionData);
+      // await editQuestion.save();
+      response.status(201).json({ status: "Question edited" });
+    } catch (e) {
+      console.log("No Question Found --->: ", e);
+    }
+  }
 
   if (request.method === "DELETE") {
     const deleteEntryQuestion = await Question.findByIdAndDelete(id);
