@@ -1,4 +1,5 @@
-import ButtonStart from "../components/ButtonStart";
+import StandardButton from "../components/StandardButton";
+import DeleteButton from "../components/DeleteButton";
 
 export default function Page() {
   return (
@@ -16,7 +17,8 @@ export default function Page() {
         <br />
         <button type="submit">Submit</button>
       </form>
-      <ButtonStart />
+      <StandardButton label="Start Test!" />
+      <DeleteButton label="" />
     </>
   );
 }
