@@ -36,11 +36,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/questions.js"
-    ],
-    "/questions/edit/[_id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/questions/edit/[_id].js"
     ]
   },
   "ampFirstPages": []
