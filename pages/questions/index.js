@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import DeleteButton from "../../components/DeleteButton";
 
 export default function Questions() {
@@ -25,6 +26,20 @@ export default function Questions() {
   const { data, error, isLoading } = useSWR("/api/questions", fetcher);
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
+
+  //================ DELETE QUESTION ====================
+
+  const router = useRouter();
+
+  async function deleteQuestion(_id) {
+    if (confirm("Are you sure?")) {
+      await fetch(`/api/questions/${_id}`, {
+        method: "DELETE",
+      });
+      router.push("/questions");
+      return;
+    }
+  }
 
   return (
     <>
@@ -82,6 +97,7 @@ export default function Questions() {
                         <Box>
                           {answers.map((answer, index) => (
                             <Box
+                              key={index}
                               margin="2px"
                               bg="lightgray"
                               mborder="1px"
@@ -90,7 +106,6 @@ export default function Questions() {
                             >
                               <Radio
                                 margin="5px"
-                                key={index}
                                 value={answer}
                                 name={`question_${_id}`}
                               >
@@ -120,7 +135,14 @@ export default function Questions() {
                           Edit
                         </Button>
                       </Link>
-                      <DeleteButton label="" />
+                      <DeleteButton
+                        onClick={() => {
+                          deleteQuestion(_id);
+                        }}
+                        type="button"
+                        variant="delete"
+                        label="Delete"
+                      />
                     </Box>
                   </ListItem>
                 </List>
