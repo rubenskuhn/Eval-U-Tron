@@ -17,15 +17,8 @@ export default function EditPage() {
 
   console.log("=== SHOW ID: ", _id);
   console.log("=== SHOW DATA: ", formData);
-  // if (!formData) return null;
 
   const answers = [formData.answer];
-  // console.log("======answer? ", answers);
-
-  // answers.map((item) => console.log(item));
-  // for (let i = 0; i < answers.length; i++) {
-  //   console.log(answers[i]);
-  // }
 
   function handleSubmit(e) {
     e.preventDefault();

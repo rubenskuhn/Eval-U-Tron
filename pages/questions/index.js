@@ -21,9 +21,7 @@ import { useRouter } from "next/router";
 import DeleteButton from "../../components/DeleteButton";
 
 export default function Questions() {
-  // Fetcher to get the data from Database / Server
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error, isLoading } = useSWR("/api/questions", fetcher);
+  const { data, error, isLoading } = useSWR("/api/questions");
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
 

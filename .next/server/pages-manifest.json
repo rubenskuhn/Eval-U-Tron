@@ -2,9 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/createquestion": "pages/createquestion.js",
-  "/test": "pages/test.js",
-  "/questions": "pages/questions.js",
-  "/api/questions": "pages/api/questions.js",
-  "/": "pages/index.js"
+  "/questions/edit/[_id]": "pages/questions/edit/[_id].js",
+  "/questions/test": "pages/questions/test.js",
+  "/api/questions": "pages/api/questions.js"
 }
