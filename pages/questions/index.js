@@ -9,7 +9,7 @@ import {
   CardBody,
   CardHeader,
   Heading,
-  SimpleGrid,
+  Grid,
   Stack,
   Flex,
   Box,
@@ -41,10 +41,14 @@ export default function Questions() {
     }
   }
 
+  //================
+
   return (
     <>
       <Box>
-        <h1 size="md">Math Test</h1>
+        <h1 size="md" marginTop="20px">
+          Math Test
+        </h1>
       </Box>
       <Link href="/createquestion" passHref legacyBehavior>
         <Button
@@ -57,11 +61,8 @@ export default function Questions() {
           Add Question
         </Button>
       </Link>
-      <SimpleGrid
-        spacing={4}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-      >
-        <Box>
+      <Grid>
+        <Flex spacing={4} flex="1" gap="4" alignItems="center" flexWrap="wrap">
           {data.map(({ proposition, answers, correctAnswer, _id }) => (
             <Card
               key={_id}
@@ -149,8 +150,8 @@ export default function Questions() {
               </CardBody>
             </Card>
           ))}
-        </Box>
-      </SimpleGrid>
+        </Flex>
+      </Grid>
     </>
   );
 }

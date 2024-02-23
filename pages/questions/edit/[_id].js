@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
-import { Link, Button, Card } from "@chakra-ui/react";
+import { Link, Button, Card, Box } from "@chakra-ui/react";
 import React from "react";
 import StandardButton from "../../../components/StandardButton";
+import StandardForm from "../../../components/StandardForm";
 
 export default function EditPage() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function EditPage() {
   console.log("=== SHOW DATA: ", formData);
   // if (!formData) return null;
 
-  // const answers = [formData.answer];
+  const answers = [formData.answer];
   // console.log("======answer? ", answers);
 
   // answers.map((item) => console.log(item));
@@ -45,10 +46,6 @@ export default function EditPage() {
     router.push(`/questions/${_id}`);
     return;
   }
-
-  // if (!isReady || isLoading || error) return <h2>Loading...</h2>;
-
-  // console.log(formData);
 
   return (
     <>
@@ -80,9 +77,6 @@ export default function EditPage() {
             id="proposition"
             name="proposition"
             defaultValue={formData.proposition}
-            // onChange={(e) =>
-            //   setFormData({ ...formData, proposition: e.target.value })
-            // }
           />
           <br />
           <label htmlFor="image">Insert the url of your image here:</label>
@@ -91,7 +85,6 @@ export default function EditPage() {
             id="image"
             name="image"
             defaultValue={formData.image}
-            // onChange={(e) => setFormData({ ...formData, image: e.target.value })}
           />
           <br />
           <label htmlFor="firstAnswer">first answer:</label>
@@ -99,10 +92,7 @@ export default function EditPage() {
             type="text"
             id="firstAnswer"
             name="firstAnswer"
-            defaultValuee={formData.answer}
-            // onChange={(e) =>
-            // setFormData({ ...formData, firstAnswer: e.target.value })
-            // }
+            defaultValue={formData.answers[0]}
           />
           <br />
           <label htmlFor="secondAnswer">second answer:</label>
@@ -110,10 +100,7 @@ export default function EditPage() {
             type="text"
             id="secondAnswer"
             name="secondAnswer"
-            defaultValuee={formData.secondAnswer}
-            // onChange={(e) =>
-            //   setFormData({ ...formData, secondAnswer: e.target.value })
-            // }
+            defaultValue={formData.answers[1]}
           />
           <br />
           <label htmlFor="thirdAnswer">third answer:</label>
@@ -121,10 +108,7 @@ export default function EditPage() {
             type="text"
             id="thirdAnswer"
             name="thirdAnswer"
-            defaultValue={formData.thirdAnswer}
-            // onChange={(e) =>
-            //   setFormData({ ...formData, thirdAnswer: e.target.value })
-            // }
+            defaultValue={formData.answers[2]}
           />
           <br />
           <label htmlFor="correctAnswer">the correct answer:</label>
@@ -133,13 +117,15 @@ export default function EditPage() {
             id="correctAnswer"
             name="correctAnswer"
             defaultValue={formData.correctAnswer}
-            // onChange={(e) =>
-            //   setFormData({ ...formData, correctAnswer: e.target.value })
-            // }
           />
           <br />
           <StandardButton type="submit" label="Submit"></StandardButton>
         </form>
+        {/* <StandardForm
+          onSubmit={editQuestion}
+          formName={"edit-question"}
+          defaultData={formData}
+        ></StandardForm> */}
       </Card>
     </>
   );
