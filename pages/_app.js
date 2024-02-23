@@ -1,21 +1,14 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import * as React from "react";
 import { SWRConfig } from "swr";
+import PageLayout from "../components/PageLayout.jsx";
+import TitleBar from "../components/TitleBar";
 
-// import { fonts } from "../lib/fonts";
+// console.log("=== PageLayout?", PageLayout);
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      {/* <style jsx global>
-        {`
-          :root {
-            --font-rubik: ${fonts.rubik.style.fontFamily};
-          }
-        `}
-      </style> */}
-      {/* <ChakraProvider theme={theme}> */}
-
       <SWRConfig
         value={{
           fetcher: async (...args) => {
@@ -28,7 +21,10 @@ export default function App({ Component, pageProps }) {
         }}
       >
         <ChakraProvider>
+          {/* <TitleBar />
+          <PageLayout> */}
           <Component {...pageProps} />
+          {/* </PageLayout> */}
         </ChakraProvider>
       </SWRConfig>
     </>

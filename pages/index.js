@@ -1,24 +1,24 @@
+import { Flex, Box } from "@chakra-ui/react";
 import StandardButton from "../components/StandardButton";
-import DeleteButton from "../components/DeleteButton";
+import Link from "next/link";
+import React from "react";
+import { useRouter } from "next/router";
 
-export default function Page() {
+export default function StartPage() {
   return (
     <>
-      <h1>Eval-U-Tron</h1>;
-      <form>
-        <label htmlFor="proposition">Write your question:</label>
-        <input type="text" id="proposition" proposition="proposition" />
-        <br />
-        <label htmlFor="answer">first answer:</label>
-        <input type="text" id="answer" answer="answer" />
-        <br />
-        <label htmlFor="answer">second answer:</label>
-        <input type="text" id="answer" answer="answer" />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <StandardButton label="Start Test!" />
-      <DeleteButton label="" />
+      <Flex>
+        <Box>
+          <Link href={{ pathname: "/test" }} passHref>
+            <StandardButton label="Start Test" />
+          </Link>
+        </Box>
+        <Box>
+          <Link href={{ pathname: "/questions" }} passHref>
+            <StandardButton label="To Admin" />
+          </Link>
+        </Box>
+      </Flex>
     </>
   );
 }

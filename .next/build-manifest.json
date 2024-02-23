@@ -37,10 +37,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/questions.js"
     ],
-    "/questions/edit/[_id]": [
+    "/test": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/questions/edit/[_id].js"
+      "static/chunks/pages/test.js"
     ]
   },
   "ampFirstPages": []
