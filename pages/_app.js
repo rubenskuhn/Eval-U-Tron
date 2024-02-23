@@ -26,10 +26,11 @@ export default function App({ Component, pageProps }) {
             return await response.json();
           },
         }}
-      />
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      >
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </SWRConfig>
     </>
   );
 }

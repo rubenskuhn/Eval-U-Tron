@@ -7,8 +7,6 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const questions = await Question.find(); // lower case is the const or function, upper case is the model
     return response.status(200).json(questions); // 200 is good to go!
-  } else {
-    response.status(405).json({ message: "Method not allowed" });
   }
 
   if (request.method === "POST") {

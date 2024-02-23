@@ -29,7 +29,7 @@ export default function createQuestion() {
     });
     if (response.ok) {
       console.log("==== Question ceated successfuly!");
-      router.push("/");
+      router.push("/questions");
     }
   }
 
