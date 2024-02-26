@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import {
+  Image,
   List,
   ListItem,
   Text,
@@ -21,9 +22,7 @@ import { useRouter } from "next/router";
 import DeleteButton from "../../components/DeleteButton";
 
 export default function Questions() {
-  // Fetcher to get the data from Database / Server
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error, isLoading } = useSWR("/api/questions", fetcher);
+  const { data, error, isLoading } = useSWR("/api/questions");
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
 
@@ -62,30 +61,38 @@ export default function Questions() {
         </Button>
       </Link>
       <Grid>
-        <Flex spacing={4} flex="1" gap="4" alignItems="center" flexWrap="wrap">
-          {data.map(({ proposition, answers, correctAnswer, _id }) => (
+        <Flex spacing={4} flex="1" gap="4" alignItems="left" flexWrap="wrap">
+          {data.map(({ proposition, answers, image, correctAnswer, _id }) => (
             <Card
               key={_id}
+              flex="1"
+              gap="4"
+              alignItems="left"
               direction={{ base: "column", sm: "column" }}
-              gap="5px"
               overflow="hidden"
               variant="outline"
               margin="5px"
               bg="lightgray"
             >
               <CardHeader>
-                <Heading size="md"> {proposition}</Heading>
+                {/* <Heading size="md"> {proposition}</Heading> */}
               </CardHeader>
-              {/* <Image
-          objectFit="cover"
-          maxW={{ base: "100%", sm: "200px" }}
-          src="../public/favicon.ico"
-          alt="Display Question Image"
-        /> */}
-              <CardBody>
+
+              <CardBody flex="1" gap="4" alignItems="left">
+                <Box flex="1" gap="4" alignItems="left">
+                  <Image
+                    objectFit="cover"
+                    maxW={{ base: "100%", sm: "350px" }}
+                    src={image}
+                    alt="Display Question Image"
+                  />
+                </Box>
                 <Text margin="2px">
-                  What is the correct answer for the proposition above?
+                  What is the correct answer for the following proposition?
                 </Text>
+                <Box>
+                  <h2 size="lx">{proposition}</h2>
+                </Box>
                 <List
                   direction={{ base: "column", sm: "column" }}
                   gap="5px"

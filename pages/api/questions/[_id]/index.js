@@ -4,7 +4,7 @@ import Question from "../../../../db/models/Question";
 export default async function handler(request, response) {
   await dbConnect();
   const { _id } = request.query;
-  console.log("QUERY", request.query);
+  // console.log("QUERY", request.query);
 
   if (!_id) {
     return;
@@ -19,8 +19,9 @@ export default async function handler(request, response) {
     try {
       const editQuestionData = request.body;
       console.log("==== Edit Data:", editQuestionData);
-      // const editQuestion = new Question(editQuestionData);
-      // await editQuestion.save();
+      const editQuestion = new Question(editQuestionData);
+      await Question.findByIdAndUpdate(_id, editQuestionData);
+
       return response.status(201).json({ status: "Question edited" });
     } catch (e) {
       console.log("No Question Found --->: ", e);

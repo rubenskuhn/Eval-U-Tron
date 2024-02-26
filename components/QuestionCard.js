@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-export default function QuestionsCard(formData) {
+export default function QuestionsCard({ formData }) {
   return (
     <>
       <Box>
@@ -55,15 +55,19 @@ export default function QuestionsCard(formData) {
               <RadioGroup>
                 <Stack bg="gray" margin="2px" borderRadius="md">
                   <Box
-                    key={index}
+                    key={formData._id}
                     margin="2px"
                     bg="lightgray"
                     mborder="1px"
                     borderColor="black"
                     borderRadius="md"
                   >
-                    <Radio margin="5px" value={answer} name={formData.answers}>
-                      <Box margin="10px">{answer}</Box>
+                    <Radio
+                      margin="5px"
+                      defaultValue={defaultData?.name}
+                      name={formData.answers}
+                    >
+                      <Box margin="10px">{formData.answers}</Box>
                     </Radio>
                   </Box>
                 </Stack>
