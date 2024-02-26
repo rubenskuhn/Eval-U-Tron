@@ -8,8 +8,6 @@ const theme = extendTheme({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-
-        color: "white",
       },
     },
   },
