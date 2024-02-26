@@ -1,6 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import * as React from "react";
 import { SWRConfig } from "swr";
+import theme from "../components/Theme.jsx";
 import PageLayout from "../components/PageLayout.jsx";
 import TitleBar from "../components/TitleBar";
 
@@ -20,7 +21,7 @@ export default function App({ Component, pageProps }) {
           },
         }}
       >
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           {/* <TitleBar />
           <PageLayout> */}
           <Component {...pageProps} />

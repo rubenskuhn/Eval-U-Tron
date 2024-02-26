@@ -44,11 +44,13 @@ export default function Questions() {
 
   return (
     <>
+      <br />
       <Box>
-        <h1 size="md" marginTop="20px">
+        <Text fontSize="30px" color="white">
           Math Test
-        </h1>
+        </Text>
       </Box>
+      <br />
       <Link href="/createquestion" passHref legacyBehavior>
         <Button
           margin="2px"
@@ -60,8 +62,10 @@ export default function Questions() {
           Add Question
         </Button>
       </Link>
-      <Grid>
-        <Flex spacing={4} flex="1" gap="4" alignItems="left" flexWrap="wrap">
+      <br />
+      <br />
+      <Grid templateColumns={`repeat(auto-fit, minmax(200px, 1fr))`} gap={3}>
+        <Flex spacing={3} flex="1" gap="4" alignItems="left" flexWrap="wrap">
           {data.map(({ proposition, answers, image, correctAnswer, _id }) => (
             <Card
               key={_id}
@@ -72,7 +76,7 @@ export default function Questions() {
               overflow="hidden"
               variant="outline"
               margin="5px"
-              bg="lightgray"
+              bg="pink"
             >
               <CardHeader>
                 {/* <Heading size="md"> {proposition}</Heading> */}

@@ -80,7 +80,7 @@ export default function Test() {
           >
             <br />
             <Box>
-              <label htmlFor="image">Inspiration</label>
+              <label htmlFor="image"></label>
               <input
                 type="image"
                 id={`image-${currentItem.image}`}
@@ -90,9 +90,16 @@ export default function Test() {
               />
             </Box>
             <br />
+            <Box>
+              <Text fontSize="xl">
+                What is the right answer to the following:{" "}
+                {currentItem.proposition}
+              </Text>
+            </Box>
+            <br />
             <ListItem gap="2px" borderRadius="md">
               <RadioGroup>
-                <Stack bg="gray" margin="2px" borderRadius="md">
+                <Stack opacity="90%" margin="2px" borderRadius="md">
                   <Box>
                     {currentItem.answers.map((answer, index) => (
                       <Box
@@ -120,9 +127,9 @@ export default function Test() {
                   </Box>
                 </Stack>
               </RadioGroup>
-              <Text>Correct answer: {currentItem.correctAnswer}</Text>
             </ListItem>
           </List>
+          <br />
           <Button onClick={handleSubmit} disabled={!selectedAnswer}>
             Submit and Next
           </Button>
