@@ -22,10 +22,7 @@ export default function App({ Component, pageProps }) {
         }}
       >
         <ChakraProvider theme={theme}>
-          {/* <TitleBar />
-          <PageLayout> */}
           <Component {...pageProps} />
-          {/* </PageLayout> */}
         </ChakraProvider>
       </SWRConfig>
     </>

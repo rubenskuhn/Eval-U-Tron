@@ -43,7 +43,7 @@ export default function StartPage() {
           <br />
           <Box>
             {data.map(({ test, _id }) => (
-              <Select selecttest="select test">
+              <Select selection="select test">
                 <option value="test">{test}</option>
               </Select>
             ))}
