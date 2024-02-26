@@ -1,15 +1,67 @@
-import { Box, Card, List, Link, ListItem, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Radio,
+  Card,
+  CardBody,
+  Stack,
+  RadioGroup,
+  List,
+  Link,
+  ListItem,
+  Button,
+} from "@chakra-ui/react";
 import useSWR from "swr";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Test() {
   const { data: formData, isLoading, error } = useSWR(`/api/questions`);
   const [currentIndex, setCurrentIndex] = useState(0); // State to keep track of current index
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [score, setScore] = useState(0);
+  const [markedCorrect, setMarkedCorrect] = useState(false); // State to track whether answer is marked correct
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % formData.length); // Move to the next item
+  const handleAnswerSelection = (e) => {
+    setSelectedAnswer(e.target.value);
   };
+  async function markScore(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    const setNewScore = {
+      test: data.test,
+      testTaker: testTaker,
+      question: data._id,
+      markedCorrect: markedCorrect,
+      score: score,
+    };
+    const response = await fetch(`/api/tests/${_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(setNewScore),
+    });
+    console.log("New Score in Database: ", setNewScore);
+  }
+
+  // ==== Adding Resulst to Test Collection ====
+
+  const handleSubmit = () => {
+    const currentQuestion = formData[currentIndex];
+    if (selectedAnswer === currentQuestion.correctAnswer) {
+      setScore(score + 1);
+      setMarkedCorrect(true); // Set markedCorrect to true if the answer is correct
+    } else {
+      setMarkedCorrect(false); // Set markedCorrect to false if the answer is incorrect
+    }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % formData.length); // Move to the next item
+    setSelectedAnswer(""); // Reset selected answer
+    setMarkedCorrect(false); // Reset markedCorrect
+  };
+
+  console.log("new Score is: ", score);
 
   if (error) return <div>Failed to load</div>;
   if (!formData) return <div>Loading...</div>;
@@ -19,62 +71,62 @@ export default function Test() {
   return (
     <>
       <Card key={currentItem._id}>
-        <form>
-          <br />
-          <label htmlFor="proposition">Proposition:</label>
-          <input
-            id={`proposition-${currentItem._id}`}
-            name={`proposition-${currentItem._id}`}
-            defaultValue={currentItem.proposition}
-          />
-          <br />
-          {/* <label htmlFor="image">Insert the url of your image here:</label>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            defaultValue={formData.image}
-          />
-          <br /> */}
-          {/* <label htmlFor="firstAnswer">first answer:</label>
-          <input
-            type="text"
-            id="firstAnswer"
-            name="firstAnswer"
-            defaultValue={formData.answers[0]}
-          />
-          <br />
-          <label htmlFor="secondAnswer">second answer:</label>
-          <input
-            type="text"
-            id="secondAnswer"
-            name="secondAnswer"
-            defaultValue={formData.answers[1]}
-          />
-          <br />
-          <label htmlFor="thirdAnswer">third answer:</label>
-          <input
-            type="text"
-            id="thirdAnswer"
-            name="thirdAnswer"
-            defaultValue={formData.answers[2]}
-          /> */}
-          {/* <br />
-          <label htmlFor="correctAnswer">the correct answer:</label>
-          <input
-            type="text"
-            id="correctAnswer"
-            name="correctAnswer"
-            defaultValue={formData.correctAnswer}
-          />
-          <br /> */}
-          <button
-            onClick={handleNext}
-            disabled={currentIndex === formData.length - 1}
+        <CardBody flex="1" gap="4" alignItems="left">
+          <List
+            direction={{ base: "column", sm: "column" }}
+            gap="5px"
+            overflow="hidden"
+            variant="outline"
           >
-            Next
-          </button>
-        </form>
+            <br />
+            <Box>
+              <label htmlFor="image">Inspiration</label>
+              <input
+                type="image"
+                id={`image-${currentItem.image}`}
+                name={`image-${currentItem.image}`}
+                src={`${currentItem.image}`}
+                defaultValue={currentItem.image}
+              />
+            </Box>
+            <br />
+            <ListItem gap="2px" borderRadius="md">
+              <RadioGroup>
+                <Stack bg="gray" margin="2px" borderRadius="md">
+                  <Box>
+                    {currentItem.answers.map((answer, index) => (
+                      <Box
+                        key={index}
+                        margin="2px"
+                        bg={
+                          markedCorrect && selectedAnswer === answer
+                            ? "lightgreen"
+                            : "lightgray"
+                        } // Change background color if answer is marked correct
+                        border="1px solid black"
+                        borderRadius="md"
+                      >
+                        <Radio
+                          margin="5px"
+                          value={answer}
+                          name={currentItem._id}
+                          checked={selectedAnswer === answer}
+                          onChange={handleAnswerSelection}
+                        >
+                          <Box margin="10px">{answer}</Box>
+                        </Radio>
+                      </Box>
+                    ))}
+                  </Box>
+                </Stack>
+              </RadioGroup>
+              <Text>Correct answer: {currentItem.correctAnswer}</Text>
+            </ListItem>
+          </List>
+          <Button onClick={handleSubmit} disabled={!selectedAnswer}>
+            Submit and Next
+          </Button>
+        </CardBody>
       </Card>
     </>
   );

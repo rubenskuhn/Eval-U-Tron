@@ -15,28 +15,39 @@ export default function EditPage() {
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
 
-  console.log("=== SHOW ID: ", _id);
-  console.log("=== SHOW DATA: ", formData);
+  // console.log("=== SHOW ID: ", _id);
+  // console.log("=== SHOW DATA: ", formData);
 
-  const answers = [formData.answer];
-
-  function handleSubmit(e) {
+  async function editQuestion(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    onSubmit(data);
-    console.log(data);
-  }
+    for (var key in data) {
+      // Check if the key ends with 'answer'
+      if (key.endsWith("answer")) {
+        // Access the value corresponding to the key
+        console.log("=== Show Answers: ", key + ": " + data[key]);
+      }
+    }
+    const answers = [data.firstAnswer, data.secondAnswer, data.thirdAnswer];
+    const setNewData = {
+      image: data.image,
+      proposition: data.proposition,
+      answers: answers,
+      correctAnswer: data.correctAnswer,
+    };
 
-  async function editQuestion() {
+    console.log("=== What is Target?", e.target);
+    console.log("NEW DATA?:", setNewData);
+    console.log(data);
     const response = await fetch(`/api/questions/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(setNewData),
     });
-    router.push(`/questions/${_id}`);
+    router.push(`/questions/`);
     return;
   }
 
@@ -74,7 +85,7 @@ export default function EditPage() {
           <br />
           <label htmlFor="image">Insert the url of your image here:</label>
           <input
-            type="text"
+            type="image"
             id="image"
             name="image"
             defaultValue={formData.image}
@@ -83,7 +94,7 @@ export default function EditPage() {
           <label htmlFor="firstAnswer">first answer:</label>
           <input
             type="text"
-            id="firstAnswer"
+            id="answers[0]"
             name="firstAnswer"
             defaultValue={formData.answers[0]}
           />
@@ -112,7 +123,8 @@ export default function EditPage() {
             defaultValue={formData.correctAnswer}
           />
           <br />
-          <StandardButton type="submit" label="Submit"></StandardButton>
+          <button>Submit</button>
+          {/* <StandardButton type="submit" label="Submit" /> */}
         </form>
         {/* <StandardForm
           onSubmit={editQuestion}
