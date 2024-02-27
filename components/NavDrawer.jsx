@@ -21,6 +21,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/react";
 import React from "react";
+import StandardButton from "./StandardButton";
 
 export default function NavDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,9 +29,21 @@ export default function NavDrawer() {
 
   return (
     <>
-      <Button leftIcon={<AddIcon />} colorScheme="teal" onClick={onOpen}>
-        Create User
+      <Button
+        leftIcon={<AddIcon />}
+        onClick={onOpen}
+        w="150px"
+        h="60px"
+        border="1px"
+        borderColor="white"
+        colorScheme="whatsapp"
+        p="6"
+        rounded="md"
+        boxShadow="dark-lg"
+      >
+        New User
       </Button>
+
       <Drawer
         isOpen={isOpen}
         placement="right"

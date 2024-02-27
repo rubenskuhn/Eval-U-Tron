@@ -3,8 +3,18 @@ import React from "react";
 
 export default function StandardButton(props) {
   const { label } = props;
+
   return (
-    <Button colorScheme="blue" boxShadow="md" p="6" rounded="md">
+    <Button
+      w="150px"
+      h="60px"
+      border="1px"
+      borderColor="white"
+      colorScheme="blue"
+      p="6"
+      rounded="md"
+      boxShadow="dark-lg"
+    >
       {label}
     </Button>
   );

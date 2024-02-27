@@ -1,18 +1,14 @@
 import useSWR from "swr";
 import {
   Image,
-  List,
-  ListItem,
   Text,
   Radio,
   RadioGroup,
   Card,
   CardBody,
   CardHeader,
-  Heading,
   Grid,
   Stack,
-  Flex,
   Box,
   Button,
 } from "@chakra-ui/react";
@@ -44,7 +40,6 @@ export default function Questions() {
 
   return (
     <>
-      <br />
       <Box>
         <Text fontSize="30px" color="white">
           Math Test
@@ -63,105 +58,93 @@ export default function Questions() {
         </Button>
       </Link>
       <br />
-      <br />
-      <Grid templateColumns={`repeat(auto-fit, minmax(200px, 1fr))`} gap={3}>
-        <Flex spacing={3} flex="1" gap="4" alignItems="left" flexWrap="wrap">
-          {data.map(({ proposition, answers, image, correctAnswer, _id }) => (
-            <Card
+      <Grid templateColumns={`repeat(auto-fit, minmax(200px, 1fr))`} gap={2}>
+        {data.map(({ proposition, answers, image, correctAnswer, _id }) => (
+          <Card key={_id}>
+            <Box
               key={_id}
               flex="1"
               gap="4"
               alignItems="left"
               direction={{ base: "column", sm: "column" }}
-              overflow="hidden"
+              // overflow="hidden"
               variant="outline"
               margin="5px"
-              bg="pink"
+              bg="lightpink"
             >
               <CardHeader>
-                {/* <Heading size="md"> {proposition}</Heading> */}
-              </CardHeader>
-
-              <CardBody flex="1" gap="4" alignItems="left">
-                <Box flex="1" gap="4" alignItems="left">
-                  <Image
-                    objectFit="cover"
-                    maxW={{ base: "100%", sm: "350px" }}
-                    src={image}
-                    alt="Display Question Image"
-                  />
-                </Box>
+                <Image
+                  // objectFit="auto-fit"
+                  // maxW={{ base: "100%", sm: "250px" }}
+                  src={image}
+                  alt="Display Question Image"
+                />
+                <br />
                 <Text margin="2px">
                   What is the correct answer for the following proposition?
                 </Text>
-                <Box>
-                  <h2 size="lx">{proposition}</h2>
-                </Box>
-                <List
-                  direction={{ base: "column", sm: "column" }}
-                  gap="5px"
-                  overflow="hidden"
-                  variant="outline"
-                >
-                  <ListItem gap="2px" borderRadius="md">
-                    <RadioGroup>
-                      <Stack bg="gray" margin="2px" borderRadius="md">
-                        <Box>
-                          {answers.map((answer, index) => (
-                            <Box
-                              key={index}
-                              margin="2px"
-                              bg="lightgray"
-                              mborder="1px"
-                              borderColor="black"
-                              borderRadius="md"
-                            >
-                              <Radio
-                                margin="5px"
-                                value={answer}
-                                name={`question_${_id}`}
-                              >
-                                <Box margin="10px">{answer}</Box>
-                              </Radio>
-                            </Box>
-                          ))}
-                        </Box>
-                      </Stack>
-                    </RadioGroup>
-                    <Text>Correct answer: {correctAnswer}</Text>
+                <br />
+                <Text fontSize="20px" fontWeight="bold">
+                  {proposition}
+                </Text>
+              </CardHeader>
+              <CardBody flex="1" alignItems="left">
+                <RadioGroup>
+                  <Stack>
                     <Box>
-                      <Link
-                        href={{
-                          pathname: "/questions/edit/[_id]",
-                          query: { _id },
-                        }}
-                        passHref
-                      >
-                        <Button
-                          margin="2px"
-                          bg="limegreen"
-                          mborder="1px"
-                          borderColor="black"
+                      {answers.map((answer, index) => (
+                        <Box
+                          marginBottom="10px"
+                          key={index}
+                          bg="orange"
+                          mborder="3px"
+                          borderColor="white"
                           borderRadius="md"
                         >
-                          Edit
-                        </Button>
-                      </Link>
-                      <DeleteButton
-                        onClick={() => {
-                          deleteQuestion(_id);
-                        }}
-                        type="button"
-                        variant="delete"
-                        label="Delete"
-                      />
+                          <Radio
+                            marginLeft="20px"
+                            value={answer}
+                            name={`question_${_id}`}
+                          >
+                            <Box margin="10px">{answer}</Box>
+                          </Radio>
+                        </Box>
+                      ))}
                     </Box>
-                  </ListItem>
-                </List>
+                  </Stack>
+                </RadioGroup>
+                <Text>Correct answer: {correctAnswer}</Text>
+                <Box>
+                  <Link
+                    href={{
+                      pathname: "/questions/edit/[_id]",
+                      query: { _id },
+                    }}
+                    passHref
+                  >
+                    <Button
+                      margin="2px"
+                      bg="limegreen"
+                      mborder="1px"
+                      borderColor="black"
+                      borderRadius="md"
+                    >
+                      Edit
+                    </Button>
+                  </Link>
+                  <DeleteButton
+                    onClick={() => {
+                      deleteQuestion(_id);
+                    }}
+                    type="button"
+                    variant="delete"
+                    label="Delete"
+                  />
+                </Box>
               </CardBody>
-            </Card>
-          ))}
-        </Flex>
+            </Box>
+          </Card>
+        ))}
       </Grid>
     </>
   );
