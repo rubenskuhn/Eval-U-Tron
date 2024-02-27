@@ -29,19 +29,20 @@ export default function NavDrawer() {
 
   return (
     <>
-      <button
+      <Button
         leftIcon={<AddIcon />}
         onClick={onOpen}
         w="150px"
         h="60px"
         border="1px"
-        borderColor="whatsapp"
+        borderColor="white"
+        colorScheme="whatsapp"
         p="6"
         rounded="md"
         boxShadow="dark-lg"
       >
         New User
-      </button>
+      </Button>
 
       <Drawer
         isOpen={isOpen}

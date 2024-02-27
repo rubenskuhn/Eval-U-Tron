@@ -10,6 +10,7 @@ export default function StandardButton(props) {
       h="60px"
       border="1px"
       borderColor="white"
+      colorScheme="blue"
       p="6"
       rounded="md"
       boxShadow="dark-lg"

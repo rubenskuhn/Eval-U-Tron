@@ -12,11 +12,6 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -32,10 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/questions.js"
     ],
-    "/questions/test": [
+    "/questions/edit/[_id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/questions/test.js"
+      "static/chunks/pages/questions/edit/[_id].js"
     ]
   },
   "ampFirstPages": []

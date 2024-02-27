@@ -10,8 +10,8 @@ const answerSchema = new Schema({
 });
 
 const testSchema = new Schema({
+  userName: { type: String, required: true },
   test: { type: String, required: true },
-  question: [answerSchema],
   testTaker: { type: String, default: 0 },
   finalScore: { type: Number, default: 0 },
 });
