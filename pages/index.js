@@ -1,11 +1,12 @@
-import { Flex, Box, Image, Select } from "@chakra-ui/react";
+import NavDrawer from "../components/NavDrawer";
+import { Flex, Box, Image, Select, Text, Center } from "@chakra-ui/react";
 import StandardButton from "../components/StandardButton";
 import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
-export default function StartPage() {
+export default function TestDrawer() {
   const { data, error, isLoading } = useSWR("/api/questions");
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
@@ -35,19 +36,27 @@ export default function StartPage() {
             />
           </Box>
           <br />
+          <Box display="flex" alignItems="center" gap={6}>
+            <NavDrawer />
+            <Text fontWeight="semibold" color="white">
+              {" "}
+              New here? Create your account and let's start!
+            </Text>
+          </Box>
+          <br />
           <Box>
             <Link href={{ pathname: "questions/test" }} passHref>
               <StandardButton label="Start Test" />
             </Link>
           </Box>
           <br />
-          <Box>
+          {/* <Box>
             {data.map(({ test, _id }) => (
               <Select selection="select test">
                 <option value="test">{test}</option>
               </Select>
             ))}
-          </Box>
+          </Box> */}
 
           <Box>
             <Link href={{ pathname: "/questions" }} passHref>
