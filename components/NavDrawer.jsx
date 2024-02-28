@@ -7,23 +7,23 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  ButtonGroup,
   Box,
   Stack,
   FormLabel,
   Input,
   InputGroup,
-  InputLeftAddon,
   InputRightAddon,
   Select,
-  Textarea,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
-import StandardButton from "./StandardButton";
+import Login from "../pages/login";
+import LoginButton from "./Login";
 
 export default function NavDrawer() {
+  const { data: session } = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
 
@@ -57,11 +57,14 @@ export default function NavDrawer() {
         >
           <DrawerCloseButton color="white" />
           <DrawerHeader borderBottomWidth="1px" color="white">
-            Create a new account
+            Your Account
           </DrawerHeader>
 
           <DrawerBody>
             <Stack spacing="24px">
+              <Box>
+                <LoginButton></LoginButton>
+              </Box>
               <Box>
                 <FormLabel htmlFor="userName" color="white">
                   Name

@@ -1,31 +1,34 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import { SimpleGrid, Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import TitleBar from "../components/TitleBar";
+import { SessionProvider } from "next-auth/react";
 
-export default function Document() {
+export default function Document(session) {
   return (
     <Html>
-      <ChakraProvider>
-        <SimpleGrid columns={1} spacingX="10px" spacingY="10px">
-          <Head>
-            <TitleBar />
-          </Head>
-          <body>
-            <Box
-              padding="5px"
-              margin="10px"
-              borderRadius="xl"
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
-              w="95%"
-              h="mg"
-            >
-              <Main></Main>
-            </Box>
-          </body>
+      <SessionProvider session={session}>
+        <ChakraProvider>
+          <SimpleGrid columns={1} spacingX="10px" spacingY="10px">
+            <Head>
+              <TitleBar />
+            </Head>
+            <body>
+              <Box
+                padding="5px"
+                margin="10px"
+                borderRadius="xl"
+                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                w="95%"
+                h="mg"
+              >
+                <Main></Main>
+              </Box>
+            </body>
 
-          <NextScript />
-        </SimpleGrid>
-      </ChakraProvider>
+            <NextScript />
+          </SimpleGrid>
+        </ChakraProvider>
+      </SessionProvider>
     </Html>
   );
 }
