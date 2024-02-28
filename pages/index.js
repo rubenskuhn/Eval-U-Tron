@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import TitleBar from "../components/TitleBar";
 
 export default function TestDrawer() {
   const { data, error, isLoading } = useSWR("/api/questions");
@@ -15,6 +16,7 @@ export default function TestDrawer() {
 
   return (
     <>
+      <TitleBar />
       <Flex
         margin="5px"
         alignContent="center"

@@ -7,7 +7,7 @@ const userSchema = new Schema({
   email: { type: String },
   image: { type: String },
   tests: { type: [String] },
-  scores: { type: [Nember], default: 0 },
+  score: { type: Number, default: 0 },
 });
 
 const User = models.User || model("User", userSchema);

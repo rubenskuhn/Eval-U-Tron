@@ -5,9 +5,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { Box, Image, Button, Flex, Text } from "@chakra-ui/react";
 import StandardButton from "./StandardButton";
 
-export default function LoginButton(data) {
+export default function LoginButton() {
   const { data: session } = useSession();
-  console.log(session);
+  console.log("Sign in button: ", session);
 
   //   const router = useRouter();
   //   const [username, setUsername] = useState("");
@@ -16,7 +16,7 @@ export default function LoginButton(data) {
   if (session) {
     return (
       <>
-        <Text>Welcome {session.user.name}</Text>
+        <Flex>Welcome {session.user.name}</Flex>
         <Flex alignItems="center" flexDirection="row" gap={3}>
           <Image rounded="md" src={session.user.image} alt="" />
           <Button minW="80px" onClick={() => signOut()}>

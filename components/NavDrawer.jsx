@@ -41,7 +41,7 @@ export default function NavDrawer() {
         rounded="md"
         boxShadow="dark-lg"
       >
-        New User
+        Sign In
       </Button>
 
       <Drawer
