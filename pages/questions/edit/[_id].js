@@ -29,6 +29,8 @@ export default function EditPage() {
         console.log("=== Show Answers: ", key + ": " + data[key]);
       }
     }
+    //============ Setting the Data ============
+
     const answers = [data.firstAnswer, data.secondAnswer, data.thirdAnswer];
     const setNewData = {
       image: data.image,

@@ -13,7 +13,6 @@ class MyDocument extends Document {
             {/* Body content */}
             <ChakraProvider>
               <SimpleGrid columns={1} spacingX="10px" spacingY="10px">
-                {/* <TitleBar /> */}
                 <Box
                   padding="5px"
                   margin="10px"
