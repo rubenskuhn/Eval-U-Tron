@@ -6,6 +6,8 @@ import React from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import TitleBar from "../components/TitleBar";
+import TestSelector from "../components/TestSelector";
+import PageLayout from "../components/PageLayout";
 
 export default function TestDrawer() {
   const { data, error, isLoading } = useSWR("/api/questions");
@@ -16,50 +18,54 @@ export default function TestDrawer() {
 
   return (
     <>
-      <TitleBar />
-      <Flex
-        margin="5px"
-        alignContent="center"
-        justifyContent="center"
-        padding="5px"
-      >
-        <Box
+      <PageLayout>
+        <Flex
           margin="5px"
           alignContent="center"
           justifyContent="center"
-          padding="10px"
+          padding="5px"
         >
-          <Box>
-            <Image
-              value="image"
-              name="image"
-              type="image"
-              src="https://www.azquotes.com/picture-quotes/quote-trying-is-the-first-step-toward-failure-homer-65-30-88.jpg"
-            />
-          </Box>
-          <br />
-          <Box display="flex" alignItems="center" gap={6}>
-            <NavDrawer />
-            <Text fontWeight="semibold" color="white">
-              {" "}
-              New here? Create your account and let's start!
-            </Text>
-          </Box>
-          <br />
-          <Box>
-            <Link href={{ pathname: "questions/test" }} passHref>
-              <StandardButton label="Start Test" />
-            </Link>
-          </Box>
-          <br />
+          <Box
+            margin="5px"
+            alignContent="center"
+            justifyContent="center"
+            padding="10px"
+          >
+            <Box>
+              <Image
+                value="image"
+                name="image"
+                type="image"
+                src="https://www.azquotes.com/picture-quotes/quote-trying-is-the-first-step-toward-failure-homer-65-30-88.jpg"
+              />
+            </Box>
+            <br />
+            <Box display="flex" alignItems="center" gap={6}>
+              <NavDrawer />
+              <Text fontWeight="semibold" color="white">
+                {" "}
+                New here? Create your account and let's start!
+              </Text>
+            </Box>
+            <br />
+            <Box>
+              <Link href={{ pathname: "questions/test" }} passHref>
+                <StandardButton label="Start Test" />
+              </Link>
+            </Box>
+            <Box>
+              <TestSelector />
+            </Box>
+            <br />
 
-          <Box>
-            <Link href={{ pathname: "/questions" }} passHref>
-              <StandardButton label="To Admin" />
-            </Link>
+            <Box>
+              <Link href={{ pathname: "/questions" }} passHref>
+                <StandardButton label="To Admin" />
+              </Link>
+            </Box>
           </Box>
-        </Box>
-      </Flex>
+        </Flex>
+      </PageLayout>
     </>
   );
 }

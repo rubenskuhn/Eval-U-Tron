@@ -3,39 +3,44 @@ import React from "react";
 import NavDrawer from "./NavDrawer";
 import StandardButton from "./StandardButton";
 import HomeButton from "./HomeButton";
-import LoginButton from "./Login";
+import LoginButton from "./LoginButton";
 
 export default function TitleBar() {
   return (
     <>
       <Flex
-        minWidth="max-content"
+        p="4"
+        // minWidth="max-content"
         alignItems="center"
-        gap="2"
-        bg="linear-gradient(to top right, #a50053, #4c1a7a)"
-        padding="5px"
+        gap="5"
+        bgGradient="linear(to-l, #7928CA, #FF0080)"
+        padding="20px"
         borderRadius="xl"
-        maxHeighth="60px"
+        maxH="70px"
         spacing={3}
-        w="95%"
-        h="60px"
-        margin="10px"
+        w="100%"
+        minH="40px"
+        // margin="px"
         // display="flex"
         // justifyContent="center"
       >
+        <Box>
+          <Text
+            color="white"
+            fontSize="30px"
+            fontWeight="lightbold"
+            letterSpacing="wide"
+          >
+            Eval-U-Tron
+          </Text>
+        </Box>
         <Spacer />
-        <Text
-          color="white"
-          fontSize="30px"
-          fontWeight="lightbold"
-          letterSpacing="wide"
-        >
-          Eval-U-Tron
-        </Text>
-
-        <Spacer />
-        <LoginButton></LoginButton>
-        <HomeButton></HomeButton>
+        <Box>
+          <LoginButton></LoginButton>
+        </Box>
+        <Box>
+          <HomeButton></HomeButton>
+        </Box>
       </Flex>
     </>
   );

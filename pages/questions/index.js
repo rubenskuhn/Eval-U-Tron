@@ -16,15 +16,24 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import DeleteButton from "../../components/DeleteButton";
+// import PageLayout from "../../components/PageLayout";
+import FilterQuestion from "../../components/FilterQuestion";
 
 export default function Questions() {
   const { data, error, isLoading } = useSWR("/api/questions");
+  const router = useRouter();
+
   if (error) return <div>Failed to load</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading || !data) return <div>Loading...</div>; // Handle loading state or data being undefined
+
+  const handleFilterChange = (testName) => {
+    // Handle filter change here
+    console.log("Selected test name:", testName);
+  };
 
   //================ DELETE QUESTION ====================
 
-  const router = useRouter();
+  console.log("----------", router.query);
 
   async function deleteQuestion(_id) {
     if (confirm("Are you sure?")) {
@@ -41,9 +50,7 @@ export default function Questions() {
   return (
     <>
       <Box>
-        <Text fontSize="30px" color="white">
-          Math Test
-        </Text>
+        <FilterQuestion onChange={handleFilterChange} />
       </Box>
       <br />
       <Link href="/createquestion" passHref legacyBehavior>
@@ -64,10 +71,9 @@ export default function Questions() {
             <Box
               key={_id}
               flex="1"
-              gap="4"
+              gap="2"
               alignItems="left"
               direction={{ base: "column", sm: "column" }}
-              // overflow="hidden"
               variant="outline"
               margin="5px"
               bg="lightpink"
