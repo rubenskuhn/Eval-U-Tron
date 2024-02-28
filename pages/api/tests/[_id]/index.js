@@ -1,5 +1,5 @@
 import dbConnect from "../../../../db/connect";
-import Test from "../../../../db/models/User";
+import User from "../../../../db/models/User";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -7,21 +7,19 @@ export default async function handler(request, response) {
   console.log("=== Receiving Test Data?", request.query);
 
   if (!_id) {
-    return;
+    return response.status(400).json({ message: "Missing _id parameter" });
   }
 
   if (request.method === "PUT") {
     try {
-      const addQuestionData = request.body;
-      console.log("==== New Test Data?", addQuestionData);
-      const newTestScore = new Test(addQuestionData);
-      await Test.findByIdAndUpdate(_id, addQuestionData);
-
-      return response.status(201).json({ status: "Score Added" });
-    } catch (e) {
-      console.log("No Score Found --->: ", e);
+      const updateData = request.body;
+      console.log("==== New Test Data?", updateData);
+      // Update the user document with the specified _id using the data in updateData
+      await User.findByIdAndUpdate(_id, updateData);
+      return response.status(200).json({ status: "User data updated" });
+    } catch (error) {
+      console.error("Error updating user data:", error);
+      return response.status(500).json({ message: "Internal server error" });
     }
   }
-
-  response.status(405).json({ message: "Method not allowed" });
 }
