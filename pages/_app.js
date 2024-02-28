@@ -2,6 +2,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import * as React from "react";
 import { SWRConfig } from "swr";
 import theme from "../components/Theme.jsx";
+import "./global.css";
+import PageLayout from "../components/PageLayout.jsx";
 
 import { SessionProvider } from "next-auth/react";
 
@@ -21,7 +23,9 @@ export default function App({ Component, pageProps, session }) {
           }}
         >
           <ChakraProvider theme={theme}>
+            {/* <PageLayout> */}
             <Component {...pageProps} />
+            {/* </PageLayout> */}
           </ChakraProvider>
         </SWRConfig>
       </SessionProvider>

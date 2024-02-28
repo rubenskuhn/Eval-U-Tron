@@ -1,0 +1,6 @@
+body {
+  /* background-attachment: fixed; */
+  overscroll-behavior: none;
+  min-height: 110vh;
+  background-size: cover;
+}

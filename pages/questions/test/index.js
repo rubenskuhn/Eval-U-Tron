@@ -14,13 +14,15 @@ import useSWR from "swr";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
+import { useRouter } from "next/router";
 
 export default function Test() {
+  const router = useRouter();
   const {
     data: formData,
     isLoading: formDataLoading,
     error: formDataError,
-  } = useSWR(`/api/questions`);
+  } = useSWR(`/api/questions?testtype=${router.query.testtype}`);
 
   // //============= Filter Question by Test =======
   // const test = "Math Test";
@@ -44,6 +46,7 @@ export default function Test() {
   };
 
   console.log("User Session Data", session);
+  console.log("----------", router.query);
 
   const handleSubmit = (e) => {
     e.preventDefault();

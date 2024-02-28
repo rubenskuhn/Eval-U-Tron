@@ -20,7 +20,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
 import Login from "../pages/login";
-import LoginButton from "./Login";
+import LoginButton from "./LoginButton";
 
 export default function NavDrawer() {
   const { data: session } = useSession();
