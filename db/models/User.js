@@ -1,21 +1,15 @@
 import mongoose from "mongoose";
-import questionSchema from "./Question";
 
 const { Schema, models, model } = mongoose;
 
-const answerSchema = new Schema({
-  question: questionSchema,
-  markedCorrect: { type: Boolean, default: false },
-  score: { type: Number, default: 0 },
+const userSchema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String },
+  image: { type: String },
+  tests: { type: [String] },
+  scores: { type: [Nember], default: 0 },
 });
 
-const testSchema = new Schema({
-  userName: { type: String, required: true },
-  test: { type: String, required: true },
-  testTaker: { type: String, default: 0 },
-  finalScore: { type: Number, default: 0 },
-});
+const User = models.User || model("User", userSchema);
 
-const Test = models.Test || model("Test", testSchema);
-
-export default Test;
+export default User;
