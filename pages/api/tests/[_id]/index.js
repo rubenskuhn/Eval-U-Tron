@@ -10,6 +10,11 @@ export default async function handler(request, response) {
     return response.status(400).json({ message: "Missing _id parameter" });
   }
 
+  if (request.method === "GET") {
+    const user = await User.findById(_id); // lower case is the const or function, upper case is the model
+    return response.status(200).json(user); // 200 is good to go!
+  }
+
   if (request.method === "PUT") {
     try {
       const updateData = request.body;

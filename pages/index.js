@@ -52,13 +52,6 @@ export default function TestDrawer() {
             </Link>
           </Box>
           <br />
-          {/* <Box>
-            {data.map(({ test, _id }) => (
-              <Select selection="select test">
-                <option value="test">{test}</option>
-              </Select>
-            ))}
-          </Box> */}
 
           <Box>
             <Link href={{ pathname: "/questions" }} passHref>

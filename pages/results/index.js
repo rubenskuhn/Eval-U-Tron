@@ -1,30 +1,25 @@
+import { Box, Flex, List, ListItem, Button } from "@chakra-ui/react";
+import { AspectRatio } from "@chakra-ui/react";
 import useSWR from "swr";
-import {
-  AspectRatio,
-  Image,
-  List,
-  ListItem,
-  Text,
-  Radio,
-  RadioGroup,
-  Card,
-  CardBody,
-  CardHeader,
-  Heading,
-  Grid,
-  Stack,
-  Flex,
-  Box,
-  Button,
-} from "@chakra-ui/react";
-import React from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useSession } from "next-auth/react";
 
-export default function ResultsPage() {
-  // const { data, error, isLoading } = useSWR("/api/tests");
-  // if (error) return <div>Failed to load</div>;
-  // if (isLoading) return <div>Loading...</div>;
+export default function Results() {
+  const { data: session } = useSession();
+  console.log("What are the User Data?", session);
+  const _id = session?.user.id;
+
+  const {
+    data: userData,
+    isLoading: userDataLoading,
+    error: userDataError,
+  } = useSWR(`/api/tests/${_id}`);
+
+  if (userDataError) return <div>Failed to load</div>;
+  if (userDataLoading) return <div>Loading...</div>;
+
+  console.log("User data:", userData);
+  console.log("Session data:", session);
 
   return (
     <>
@@ -48,13 +43,15 @@ export default function ResultsPage() {
                 src="https://www.youtube.com/embed/kav7tifmyTg?si=4FlCeNsxwb-DB69P"
                 title="YouTube video player"
                 frameborder="0"
-                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                // allowfullscreen
               ></iframe>
             </AspectRatio>
           </Box>
           <br />
         </Box>
+        <List>
+          <ListItem>{userData.name}</ListItem>
+          <ListItem>{userData.score}</ListItem>
+        </List>
       </Flex>
     </>
   );
