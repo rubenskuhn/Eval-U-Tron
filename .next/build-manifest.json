@@ -32,6 +32,16 @@
       "static/chunks/main.js",
       "static/chunks/pages/questions.js"
     ],
+    "/questions/edit/[_id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/questions/edit/[_id].js"
+    ],
+    "/questions/test": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/questions/test.js"
+    ],
     "/results": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
