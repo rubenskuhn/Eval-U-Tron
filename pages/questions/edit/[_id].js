@@ -74,9 +74,7 @@ export default function EditPage() {
           gap="4"
           alignItems="left"
           direction={{ base: "column", sm: "column" }}
-          variant="outline"
           margin="5px"
-          bg="lightgray"
         >
           <form
             onSubmit={editQuestion}

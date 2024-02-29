@@ -6,15 +6,16 @@ import {
   CardBody,
   Stack,
   RadioGroup,
-  List,
-  ListItem,
+  Image,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import useSWR from "swr";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import Router from "next/router";
 import { useRouter } from "next/router";
+import PageLayoutDuringTest from "../../../components/PageLayoutDuringTest";
+import StandardButton from "../../../components/StandardButton";
 
 export default function Test() {
   const router = useRouter();
@@ -23,17 +24,6 @@ export default function Test() {
     isLoading: formDataLoading,
     error: formDataError,
   } = useSWR(`/api/questions?testtype=${router.query.testtype}`);
-
-  // //============= Filter Question by Test =======
-  // const test = "Math Test";
-
-  // Question.find({ test: test })
-  //   .then((questions) => {
-  //     console.log("Selected Questions:", questions); // Output the questions with the specified test name
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error retrieving questions:", error);
-  //   });
 
   const { data: session } = useSession();
 
@@ -61,7 +51,7 @@ export default function Test() {
     }
     // Check if currentIndex is already at the last index and go to results
     if (currentIndex === formData.length - 1) {
-      Router.push(`/results/`);
+      router.push(`/results/`);
       return;
     } else {
       setCurrentIndex((prevIndex) => prevIndex + 1);
@@ -93,71 +83,68 @@ export default function Test() {
 
   return (
     <>
-      <Card key={currentItem._id}>
-        <CardBody flex="1" gap="4" alignItems="left">
-          <List
-            direction={{ base: "column", sm: "column" }}
-            gap="5px"
-            overflow="hidden"
-            variant="outline"
-          >
-            <br />
-            <Box>
-              <label htmlFor="image"></label>
-              <input
-                type="image"
-                id={`image-${currentItem.image}`}
-                name={`image-${currentItem.image}`}
-                src={`${currentItem.image}`}
-                defaultValue={currentItem.image}
-              />
-            </Box>
-            <br />
-            <Box>
-              <Text fontSize="xl">
-                What is the right answer to the following:{" "}
-                {currentItem.proposition}
-              </Text>
-            </Box>
-            <br />
-            <ListItem gap="2px" borderRadius="md">
-              <RadioGroup>
-                <Stack opacity="90%" margin="2px" borderRadius="md">
-                  <Box>
-                    {currentItem.answers.map((answer, index) => (
-                      <Box
-                        key={index}
-                        margin="2px"
-                        bg={
-                          markedCorrect && selectedAnswer === answer
-                            ? "lightgreen"
-                            : "lightgray"
-                        }
-                        border="1px solid black"
-                        borderRadius="md"
-                      >
-                        <Radio
-                          margin="5px"
-                          value={answer}
-                          name={currentItem._id}
-                          checked={selectedAnswer === answer}
-                          onChange={handleAnswerSelection}
-                        >
-                          <Box margin="10px">{answer}</Box>
-                        </Radio>
-                      </Box>
-                    ))}
+      <PageLayoutDuringTest>
+        <Card key={currentItem._id} margin="25px" padding="20px" bg="pink">
+          <CardBody style={{ overflow: "hidden" }}>
+            <Image
+              marginX="auto"
+              marginY="10px"
+              id={`image-${currentItem.image}`}
+              name={`image-${currentItem.image}`}
+              src={`${currentItem.image}`}
+              defaultValue={currentItem.image}
+              maxW="100%"
+              maxH="100%"
+            />
+          </CardBody>
+          <Heading marginLeft="25px" marginBottom="20px">
+            <Text fontSize="xl">{currentItem.proposition}</Text>
+          </Heading>
+          <CardBody>
+            <RadioGroup>
+              <Box>
+                {currentItem.answers.map((answer, index) => (
+                  <Box
+                    key={index}
+                    marginBottom="10px"
+                    bg={selectedAnswer === answer ? "lightgray" : "inherit"}
+                    border="1px solid black"
+                    borderRadius="md"
+                  >
+                    <Radio
+                      borderColor="black"
+                      padding="20px"
+                      value={answer}
+                      name={currentItem._id}
+                      checked={selectedAnswer === answer}
+                      onChange={handleAnswerSelection}
+                      objectFit="cover"
+                    >
+                      <Box marginLeft="20px">{answer}</Box>
+                    </Radio>
                   </Box>
-                </Stack>
-              </RadioGroup>
-            </ListItem>
-          </List>
-          <br />
-          <Button onClick={handleSubmit} disabled={!selectedAnswer}>
-            Submit and Next
-          </Button>
-        </CardBody>
-      </Card>
+                ))}
+              </Box>
+            </RadioGroup>
+            <br />
+            <Button
+              w="150px"
+              h="50px"
+              border="1px"
+              borderColor="white"
+              colorScheme="blue"
+              p="6"
+              rounded="md"
+              boxShadow="md"
+              marginBottom="25px"
+              onClick={handleSubmit}
+              disabled={!selectedAnswer}
+            >
+              Submit and Next
+            </Button>
+          </CardBody>
+        </Card>
+      </PageLayoutDuringTest>
     </>
   );
 }

@@ -6,14 +6,14 @@ export default function StandardButton(props) {
 
   return (
     <Button
-      w="150px"
-      h="60px"
+      w="100px"
+      h="50px"
       border="1px"
       borderColor="white"
       colorScheme="blue"
       p="6"
       rounded="md"
-      boxShadow="dark-lg"
+      boxShadow="md"
     >
       {label}
     </Button>
