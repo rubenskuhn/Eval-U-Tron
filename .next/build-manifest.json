@@ -27,20 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/createquestion": [
+    "/questions/test": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/createquestion.js"
-    ],
-    "/questions": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/questions.js"
-    ],
-    "/results": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/results.js"
+      "static/chunks/pages/questions/test.js"
     ]
   },
   "ampFirstPages": []
