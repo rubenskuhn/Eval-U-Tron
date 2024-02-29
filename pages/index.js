@@ -48,6 +48,9 @@ export default function HomePage() {
               Confront your stupidity and lose your mind with our quizzes!
             </Text>
           </Box>
+          {/* <Box display="flex" alignItems="center" gap={6}>
+            <NavDrawer />
+          </Box> */}
           {!session ? (
             <Link href="/api/auth/signin" passHref>
               <StandardButton label="Sign In" />
@@ -56,13 +59,13 @@ export default function HomePage() {
             <>
               <TestSelector tests={data.test} />
               <Link href="/questions/test" passHref>
-                <StandardButton label="Start A Quiz" />
+                <StandardButton label="Start A Quiz" fontColor="white" />
               </Link>
-              {session.user.role === "admin" && (
-                <Link href="/questions" passHref>
-                  <StandardButton label="Admin Dashboard" />
-                </Link>
-              )}
+              {/* {session.user.role === "admin" && ( */}
+              <Link href="/questions" passHref>
+                <StandardButton label="Admin" />
+              </Link>
+              {/* )} */}
             </>
           )}
         </VStack>

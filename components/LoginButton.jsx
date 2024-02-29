@@ -46,7 +46,9 @@ export default function LoginButton() {
     return (
       <>
         <Flex alignItems="center" flexDirection="row">
-          <VscAccount size="30px" color="white" />
+          <Box padding="20px">
+            <VscAccount size="30px" color="white" />
+          </Box>
           <Button minW="80px" onClick={() => signIn()}>
             Sign in
           </Button>
