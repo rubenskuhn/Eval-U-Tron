@@ -1,7 +1,14 @@
 import Link from "next/link.js";
 import { useRouter } from "next/router";
-import { Button } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  Heading,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
 import React from "react";
+import PageLayout from "../components/PageLayout";
 
 export default function createQuestion() {
   const router = useRouter();
@@ -35,43 +42,55 @@ export default function createQuestion() {
 
   return (
     <>
-      <h1>Eval-U-Tron</h1>
-      <Link href="/questions" passHref legacyBehavior>
-        <Button
-          margin="2px"
-          bg="limegreen"
-          mborder="1px"
-          borderColor="black"
-          borderRadius="md"
-        >
-          Back to Questions
-        </Button>
-      </Link>
-      <h2 id="add-question">Add Question</h2>
-      <form onSubmit={addQuestion}>
-        <label htmlFor="test">Name of your Test:</label>
-        <input type="text" id="test" name="test" />
-        <br />
-        <label htmlFor="proposition">Write your question:</label>
-        <input type="text" id="proposition" name="proposition" />
-        <br />
-        <label htmlFor="image">Insert the url of your image here:</label>
-        <input type="text" id="image" name="image" />
-        <br />
-        <label htmlFor="firstAnswer">first answer:</label>
-        <input type="text" id="firstAnswer" name="firstAnswer" />
-        <br />
-        <label htmlFor="secondAnswer">second answer:</label>
-        <input type="text" id="secondAnswer" name="secondAnswer" />
-        <br />
-        <label htmlFor="thirdAnswer">third answer:</label>
-        <input type="text" id="thirdAnswer" name="thirdAnswer" />
-        <br />
-        <label htmlFor="correctAnswer">the correct answer:</label>
-        <input type="text" id="correctAnswer" name="correctAnswer" />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+      <PageLayout>
+        <Link href="/questions" passHref legacyBehavior>
+          <Button
+            margin="2px"
+            bg="limegreen"
+            mborder="1px"
+            borderColor="black"
+            borderRadius="md"
+          >
+            Back to Questions
+          </Button>
+        </Link>
+        <Heading as="h2" size="lg" marginBottom="4">
+          Add Question
+        </Heading>
+        <form onSubmit={addQuestion}>
+          <FormControl id="test" marginBottom="4">
+            <FormLabel>Name of your Test</FormLabel>
+            <Input type="text" name="test" />
+          </FormControl>
+          <FormControl id="proposition" marginBottom="4">
+            <FormLabel>Write your question</FormLabel>
+            <Input type="text" name="proposition" />
+          </FormControl>
+          <FormControl id="image" marginBottom="4">
+            <FormLabel>Insert the url of your image here</FormLabel>
+            <Input type="text" name="image" />
+          </FormControl>
+          <FormControl id="firstAnswer" marginBottom="4">
+            <FormLabel>First answer</FormLabel>
+            <Input type="text" name="firstAnswer" />
+          </FormControl>
+          <FormControl id="secondAnswer" marginBottom="4">
+            <FormLabel>Second answer</FormLabel>
+            <Input type="text" name="secondAnswer" />
+          </FormControl>
+          <FormControl id="thirdAnswer" marginBottom="4">
+            <FormLabel>Third answer</FormLabel>
+            <Input type="text" name="thirdAnswer" />
+          </FormControl>
+          <FormControl id="correctAnswer" marginBottom="4">
+            <FormLabel>The correct answer</FormLabel>
+            <Input type="text" name="correctAnswer" />
+          </FormControl>
+          <Button type="submit" colorScheme="blue">
+            Submit
+          </Button>
+        </form>
+      </PageLayout>
     </>
   );
 }
