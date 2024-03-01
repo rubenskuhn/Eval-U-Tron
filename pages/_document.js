@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>{/* Any additional head elements can be added here */}</Head>
-        <body>
+        <body style={{ minHeight: "100vh" }}>
           <Main />
 
           <NextScript />

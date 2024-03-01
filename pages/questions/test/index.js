@@ -84,20 +84,29 @@ export default function Test() {
   return (
     <>
       <PageLayoutDuringTest>
-        <Card key={currentItem._id} margin="25px" padding="20px" bg="pink">
+        <Card
+          key={currentItem._id}
+          margin="25px"
+          padding="20px"
+          bg="pink"
+          minW="700px"
+          maxW="700px"
+        >
           <CardBody style={{ overflow: "hidden" }}>
             <Image
               marginX="auto"
-              marginY="10px"
+              // // marginY="10px"
               id={`image-${currentItem.image}`}
               name={`image-${currentItem.image}`}
               src={`${currentItem.image}`}
               defaultValue={currentItem.image}
-              maxW="100%"
-              maxH="100%"
+              minW="450px"
+              maxW="450px"
+              maxh="300px"
+              // maxH="100%"
             />
           </CardBody>
-          <Heading marginLeft="25px" marginBottom="20px">
+          <Heading marginLeft="25px">
             <Text fontSize="xl">{currentItem.proposition}</Text>
           </Heading>
           <CardBody>
@@ -113,7 +122,7 @@ export default function Test() {
                   >
                     <Radio
                       borderColor="black"
-                      padding="20px"
+                      padding="10px"
                       value={answer}
                       name={currentItem._id}
                       checked={selectedAnswer === answer}

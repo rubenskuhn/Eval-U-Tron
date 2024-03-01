@@ -2,9 +2,15 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/questions/test": "pages/questions/test.js",
   "/results": "pages/results.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/questions": "pages/questions.js",
   "/api/tests/[_id]": "pages/api/tests/[_id].js",
-  "/questions/test": "pages/questions/test.js"
+  "/api/questions": "pages/api/questions.js",
+  "/": "pages/index.js",
+  "/api/testTypes": "pages/api/testTypes.js",
+  "/questions": "pages/questions.js",
+  "/api/editquestions": "pages/api/editquestions.js",
+  "/questions/edit/[_id]": "pages/questions/edit/[_id].js",
+  "/api/questions/[_id]": "pages/api/questions/[_id].js"
 }

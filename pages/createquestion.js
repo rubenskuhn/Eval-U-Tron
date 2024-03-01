@@ -6,6 +6,7 @@ import {
   Heading,
   FormLabel,
   Input,
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import PageLayout from "../components/PageLayout";
@@ -43,53 +44,58 @@ export default function createQuestion() {
   return (
     <>
       <PageLayout>
+        <br />
         <Link href="/questions" passHref legacyBehavior>
           <Button
-            margin="2px"
+            marginLeft="5px"
             bg="limegreen"
-            mborder="1px"
-            borderColor="black"
+            border="1px solid gray"
             borderRadius="md"
           >
             Back to Questions
           </Button>
         </Link>
-        <Heading as="h2" size="lg" marginBottom="4">
+        <br />
+        <br />
+        <Heading as="h2" size="lg" marginLeft="5px">
           Add Question
         </Heading>
-        <form onSubmit={addQuestion}>
-          <FormControl id="test" marginBottom="4">
-            <FormLabel>Name of your Test</FormLabel>
-            <Input type="text" name="test" />
-          </FormControl>
-          <FormControl id="proposition" marginBottom="4">
-            <FormLabel>Write your question</FormLabel>
-            <Input type="text" name="proposition" />
-          </FormControl>
-          <FormControl id="image" marginBottom="4">
-            <FormLabel>Insert the url of your image here</FormLabel>
-            <Input type="text" name="image" />
-          </FormControl>
-          <FormControl id="firstAnswer" marginBottom="4">
-            <FormLabel>First answer</FormLabel>
-            <Input type="text" name="firstAnswer" />
-          </FormControl>
-          <FormControl id="secondAnswer" marginBottom="4">
-            <FormLabel>Second answer</FormLabel>
-            <Input type="text" name="secondAnswer" />
-          </FormControl>
-          <FormControl id="thirdAnswer" marginBottom="4">
-            <FormLabel>Third answer</FormLabel>
-            <Input type="text" name="thirdAnswer" />
-          </FormControl>
-          <FormControl id="correctAnswer" marginBottom="4">
-            <FormLabel>The correct answer</FormLabel>
-            <Input type="text" name="correctAnswer" />
-          </FormControl>
-          <Button type="submit" colorScheme="blue">
-            Submit
-          </Button>
-        </form>
+        <br />
+        <Box marginLeft="5px">
+          <form onSubmit={addQuestion}>
+            <FormControl id="test" marginBottom="4">
+              <FormLabel>Name of your Test</FormLabel>
+              <Input type="text" name="test" />
+            </FormControl>
+            <FormControl id="proposition" marginBottom="4">
+              <FormLabel>Write your question</FormLabel>
+              <Input type="text" name="proposition" />
+            </FormControl>
+            <FormControl id="image" marginBottom="4">
+              <FormLabel>Insert the url of your image here</FormLabel>
+              <Input type="text" name="image" />
+            </FormControl>
+            <FormControl id="firstAnswer" marginBottom="4">
+              <FormLabel>First answer</FormLabel>
+              <Input type="text" name="firstAnswer" />
+            </FormControl>
+            <FormControl id="secondAnswer" marginBottom="4">
+              <FormLabel>Second answer</FormLabel>
+              <Input type="text" name="secondAnswer" />
+            </FormControl>
+            <FormControl id="thirdAnswer" marginBottom="4">
+              <FormLabel>Third answer</FormLabel>
+              <Input type="text" name="thirdAnswer" />
+            </FormControl>
+            <FormControl id="correctAnswer" marginBottom="4">
+              <FormLabel>The correct answer</FormLabel>
+              <Input type="text" name="correctAnswer" />
+            </FormControl>
+            <Button type="submit" colorScheme="blue">
+              Submit
+            </Button>
+          </form>
+        </Box>
       </PageLayout>
     </>
   );

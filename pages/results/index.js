@@ -69,9 +69,19 @@ export default function Results() {
           </Heading>
           <CardBody>
             <List>
-              <ListItem>You've got {userData.score} out of 4 right!</ListItem>
+              <ListItem>
+                <Text as="h3">You've got {userData.score} out of 4 right!</Text>
+              </ListItem>
               <br />
-              <ListItem>{setImprovement()}</ListItem>
+              <ListItem>
+                <Text as="h3" fontSize="xl">
+                  {(userData.score / 4) * 100} %
+                </Text>
+              </ListItem>
+              <br />
+              <ListItem>
+                <Text as="i">{setImprovement()}</Text>
+              </ListItem>
             </List>
           </CardBody>
         </Card>
