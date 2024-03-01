@@ -11,7 +11,7 @@ export default function DeleteButton(props) {
 
   return (
     <>
-      <Box boxShadow="ig">
+      <Box boxShadow="lg" mborder="1px" borderColor="white">
         <Button
           onClick={onClick}
           aria-label="Delete"

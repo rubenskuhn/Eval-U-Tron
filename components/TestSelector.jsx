@@ -26,9 +26,11 @@ export default function SelectTest({ SelectedTest }) {
           value={SelectedTest}
           onChange={handleSelectChange}
           placeholder="Select Test"
+          color="white"
+          optionStyleProps={{ color: "white" }}
         >
           {data.map((testName) => (
-            <option value={testName} key={testName}>
+            <option value={testName} key={testName} color="white">
               {testName}
             </option>
           ))}

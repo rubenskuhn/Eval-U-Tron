@@ -27,10 +27,10 @@ export default function HomePage() {
 
   return (
     <PageLayout>
-      <Flex align="center" minHeight="100vh" direction="column" padding="25px">
+      <Flex align="center" minHeight="100vh" direction="column">
         <Box>
           <Image
-            margin="10px"
+            margin="5px"
             value="image"
             name="image"
             type="image"
@@ -38,14 +38,15 @@ export default function HomePage() {
           />
         </Box>
         <VStack spacing="2" alignItems="center">
-          <Heading as="h1" fontSize="3xl" margin="25px">
+          <Heading as="h1" fontSize="3xl" margin="20px">
             <Text color="white">
               Welcome {session?.user?.name || "to Your Quiz Platform"}!
             </Text>
           </Heading>
-          <Box margin="10px">
-            <Text fontSize="lg" color="white">
-              Confront your stupidity and lose your mind with our quizzes!
+          <Box>
+            <Text fontSize="lg" color="white" as="i">
+              Confront your intelligence/stupidity and flex/lose your mind with
+              our quizzes!
             </Text>
           </Box>
           {/* <Box display="flex" alignItems="center" gap={6}>
@@ -57,10 +58,12 @@ export default function HomePage() {
             </Link>
           ) : (
             <>
-              <TestSelector tests={data.test} />
-              <Link href="/questions/test" passHref>
+              <br />
+              <TestSelector tests={data.test} className="white-text" />
+              <br />
+              {/* <Link href="/questions/test" passHref>
                 <StandardButton label="Start A Quiz" fontColor="white" />
-              </Link>
+              </Link> */}
               {/* {session.user.role === "admin" && ( */}
               <Link href="/questions" passHref>
                 <StandardButton label="Admin" />

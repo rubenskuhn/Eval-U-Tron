@@ -11,6 +11,9 @@ import {
   Stack,
   Box,
   Button,
+  Heading,
+  Flex,
+  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
@@ -55,23 +58,32 @@ export default function Questions() {
         {/* <Box>
         <FilterQuestion onChange={handleFilterChange} />
       </Box> */}
-        <Box>Manage Test & Questions</Box>
+        <br />
+        <Box>
+          <Heading as="h2" size="lg" marginLeft="5px">
+            Create and Manage Tests & Questions
+          </Heading>
+        </Box>
         <br />
         <Link href="/createquestion" passHref legacyBehavior>
           <Button
             margin="2px"
             bg="limegreen"
-            mborder="1px"
-            borderColor="black"
+            border="1px solid gray"
             borderRadius="md"
           >
             Add Question
           </Button>
         </Link>
         <br />
-        <Grid templateColumns={`repeat(auto-fit, minmax(200px, 1fr))`} gap={2}>
+        <br />
+        <Grid
+          templateColumns={`repeat(auto-fit, minmax(300px, 1fr))`}
+          gap={4}
+          bg="transparent"
+        >
           {data.map(({ proposition, answers, image, correctAnswer, _id }) => (
-            <Card key={_id}>
+            <Card key={_id} bg="pink">
               <Box
                 key={_id}
                 flex="1"
@@ -80,7 +92,7 @@ export default function Questions() {
                 direction={{ base: "column", sm: "column" }}
                 variant="outline"
                 margin="5px"
-                bg="lightpink"
+                bg="transparent"
               >
                 <CardHeader>
                   <Image
@@ -102,15 +114,16 @@ export default function Questions() {
                           <Box
                             marginBottom="10px"
                             key={index}
-                            bg="orange"
-                            mborder="3px"
-                            borderColor="white"
+                            bg="lightpink"
+                            // mborder="3px"
+                            border="1px solid gray"
                             borderRadius="md"
                           >
                             <Radio
                               marginLeft="20px"
                               value={answer}
                               name={`question_${_id}`}
+                              color="black"
                             >
                               <Box margin="10px">{answer}</Box>
                             </Radio>
@@ -120,24 +133,22 @@ export default function Questions() {
                     </Stack>
                   </RadioGroup>
                   <Text>Correct answer: {correctAnswer}</Text>
-                  <Box>
-                    <Link
-                      href={{
-                        pathname: "/questions/edit/[_id]",
-                        query: { _id },
-                      }}
-                      passHref
-                    >
-                      <Button
-                        margin="2px"
-                        bg="limegreen"
-                        mborder="1px"
-                        borderColor="black"
-                        borderRadius="md"
+                  <br />
+                  <Flex>
+                    <Box boxShadow="lg" mborder="1px" borderColor="white">
+                      <Link
+                        href={{
+                          pathname: "/questions/edit/[_id]",
+                          query: { _id },
+                        }}
+                        passHref
                       >
-                        Edit
-                      </Button>
-                    </Link>
+                        <Button bg="limegreen" p="6">
+                          Edit
+                        </Button>
+                      </Link>
+                    </Box>
+                    <Spacer />
                     <DeleteButton
                       onClick={() => {
                         deleteQuestion(_id);
@@ -146,7 +157,7 @@ export default function Questions() {
                       variant="delete"
                       label="Delete"
                     />
-                  </Box>
+                  </Flex>
                 </CardBody>
               </Box>
             </Card>
